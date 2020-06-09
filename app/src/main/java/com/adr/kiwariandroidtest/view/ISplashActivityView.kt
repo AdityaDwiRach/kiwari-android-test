@@ -1,5 +1,5 @@
 package com.adr.kiwariandroidtest.view
 
 interface ISplashActivityView {
-    fun onSplashFinished()
+    fun onSplashFinished(isUserLoggedIn: Boolean)
 }
