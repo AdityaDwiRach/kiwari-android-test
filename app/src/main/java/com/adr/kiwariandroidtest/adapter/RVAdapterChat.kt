@@ -4,10 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.adr.kiwariandroidtest.R
 import com.adr.kiwariandroidtest.model.TextMessageModel
 import kotlinx.android.synthetic.main.item_rv_chat.view.*
+import org.w3c.dom.Text
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RVAdapterChat : RecyclerView.Adapter<RVAdapterChat.ViewHolder>(), IRVAdapterChatModel,
     IRVAdapterChatView {
@@ -16,8 +22,9 @@ class RVAdapterChat : RecyclerView.Adapter<RVAdapterChat.ViewHolder>(), IRVAdapt
     private var currentUid = ""
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val chatText = itemView.tv_very_chat
-        val relativeLayout = itemView.rl_chat
+        val chatText: TextView = itemView.tv_very_chat
+        val chatDate: TextView = itemView.tv_very_date_chat
+        val relativeLayout: RelativeLayout = itemView.rl_chat
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +37,10 @@ class RVAdapterChat : RecyclerView.Adapter<RVAdapterChat.ViewHolder>(), IRVAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val listData = getListData()
+        val date = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(Date(listData[position].time))
+
         holder.chatText.text = listData[position].text
+        holder.chatDate.text = date
 
         if (listData[position].senderId == currentUid){
             holder.relativeLayout.apply {

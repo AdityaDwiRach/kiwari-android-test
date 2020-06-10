@@ -17,7 +17,19 @@
             android:textColor="@color/white"
             android:maxWidth="250dp"
             android:minWidth="120dp"
+            android:textSize="16sp"
             android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tv_very_date_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:maxWidth="250dp"
+            android:minWidth="120dp"
+            android:textSize="11sp"
+            android:layout_below="@id/tv_very_chat"
+            android:padding="8dp"/>
 
     </RelativeLayout>
 
