@@ -1,12 +1,11 @@
 package com.adr.kiwariandroidtest.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
+import androidx.appcompat.app.AppCompatActivity
 import com.adr.kiwariandroidtest.R
 import com.adr.kiwariandroidtest.presenter.LoginActivityPresenter
 import kotlinx.android.synthetic.main.activity_login.*

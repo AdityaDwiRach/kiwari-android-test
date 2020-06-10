@@ -52,11 +52,7 @@ class ChatActivityPresenter(private val iChatActivityView: IChatActivityView) :
     }
 
     override fun sendMessage(textMessage: TextMessageModel.TextMessage) {
-//        val firestoreChat = FirebaseFirestore.getInstance().collection(COLLECTION_KEY).document(
-//            DOCUMENT_KEY
-//        )
         fireStoreChat.add(textMessage)
-//        set(textMessage)
             .addOnSuccessListener {
                 iChatActivityView.onSuccessSendMessage()
                 updateChat()
@@ -67,7 +63,6 @@ class ChatActivityPresenter(private val iChatActivityView: IChatActivityView) :
     }
 
     override fun updateChat() {
-//        fireStoreChat.orderBy("time", Query.Direction.ASCENDING)
         fireStoreChat.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
             when {
                 firebaseFirestoreException != null -> iChatActivityView.onChatUpdatedFailure()
@@ -88,12 +83,6 @@ class ChatActivityPresenter(private val iChatActivityView: IChatActivityView) :
                     iChatActivityView.onChatUpdatedSuccess(data)
                 }
             }
-
-
-//            Log.d("chat", documentSnapshot?.documents?.get(0)?.data.toString())
-//            Log.d("chat", data.toString())
         }
     }
-
-
 }

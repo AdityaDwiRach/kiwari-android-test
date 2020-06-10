@@ -1,12 +1,11 @@
 package com.adr.kiwariandroidtest.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import com.adr.kiwariandroidtest.R
 import com.adr.kiwariandroidtest.presenter.SplashActivityPresenter
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity(), ISplashActivityView {

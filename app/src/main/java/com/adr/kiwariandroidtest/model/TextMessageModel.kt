@@ -1,7 +1,5 @@
 package com.adr.kiwariandroidtest.model
 
-import java.util.*
-
 class TextMessageModel {
 
     data class TextMessage(

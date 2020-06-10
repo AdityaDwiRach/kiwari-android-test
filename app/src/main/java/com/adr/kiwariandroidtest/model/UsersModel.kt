@@ -7,6 +7,4 @@ class UsersModel{
         val name: String = "",
         val uid: String = ""
     )
-
-
 }

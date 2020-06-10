@@ -1,6 +1,5 @@
 package com.adr.kiwariandroidtest.presenter
 
-import android.util.Log
 import com.adr.kiwariandroidtest.view.ILoginActivityView
 import com.google.firebase.auth.FirebaseAuth
 

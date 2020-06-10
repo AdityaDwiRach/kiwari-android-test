@@ -55,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/red"
                 android:src="@drawable/ic_baseline_send" />
 
         </LinearLayout>

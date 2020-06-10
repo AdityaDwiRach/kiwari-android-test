@@ -1,6 +1,5 @@
 package com.adr.kiwariandroidtest.presenter
 
-import com.adr.kiwariandroidtest.adapter.RVAdapterMain
 import com.adr.kiwariandroidtest.model.UsersModel
 import com.adr.kiwariandroidtest.view.IMainActivityView
 import com.google.firebase.auth.FirebaseAuth

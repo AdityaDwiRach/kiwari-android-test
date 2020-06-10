@@ -1,12 +1,9 @@
 package com.adr.kiwariandroidtest.view
 
-import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adr.kiwariandroidtest.R
 import com.adr.kiwariandroidtest.adapter.RVAdapterChat
@@ -16,11 +13,9 @@ import com.adr.kiwariandroidtest.view.MainActivity.Companion.EXTRA_UID
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.custom_action_bar.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ChatActivity : AppCompatActivity(), IChatActivityView {
 
