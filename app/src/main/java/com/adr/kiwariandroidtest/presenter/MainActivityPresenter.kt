@@ -1,21 +1,17 @@
 package com.adr.kiwariandroidtest.presenter
 
-import android.content.Context
-import android.content.Intent
-import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
+import com.adr.kiwariandroidtest.adapter.RVAdapterMain
 import com.adr.kiwariandroidtest.model.UsersModel
 import com.adr.kiwariandroidtest.view.IMainActivityView
-import com.adr.kiwariandroidtest.view.SplashActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
 
-class MainActivityPresenter(private val iMainActivityView: IMainActivityView, private val context: Context): IMainActivityPresenter {
-    override fun getCurrentUid() {
+class MainActivityPresenter(private val iMainActivityView: IMainActivityView): IMainActivityPresenter {
+
+    override fun getAllContact() {
         val firebaseUser = FirebaseAuth.getInstance().currentUser?.uid
         val firebaseDatabase = FirebaseDatabase.getInstance().reference.child("users")
 
@@ -25,15 +21,22 @@ class MainActivityPresenter(private val iMainActivityView: IMainActivityView, pr
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val test: ArrayList<UsersModel.User> = p0.value as ArrayList<UsersModel.User>
+                val users: ArrayList<UsersModel.User> = ArrayList()
 
-//                for (user: UsersModel.User in test){
-//                    if (user.uid == firebaseUser){
-//
-//                    }
-//                }
-//                Log.d("getdatabasevalue", p0.getValue(UsersModel.Users::class.java).toString())
-                Log.d("getdatabasevalue",test.toString())
+                for (dataSnapShot: DataSnapshot in p0.children){
+                    val user = dataSnapShot.getValue(UsersModel.User::class.java)
+                    if (user != null) {
+                        users.add(user)
+                    }
+                }
+
+                for (user: UsersModel.User in users){
+                    if (user.uid == firebaseUser){
+                        users.remove(user)
+                        break
+                    }
+                }
+                iMainActivityView.onSetData(users)
             }
 
         })
@@ -45,7 +48,6 @@ class MainActivityPresenter(private val iMainActivityView: IMainActivityView, pr
 
         if (firebaseUser.currentUser == null){
             iMainActivityView.onLogoutStatus(true)
-            context.startActivity(Intent(context, SplashActivity::class.java))
         } else {
             iMainActivityView.onLogoutStatus(false)
         }

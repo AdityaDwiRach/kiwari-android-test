@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import com.adr.kiwariandroidtest.R
 import com.adr.kiwariandroidtest.presenter.SplashActivityPresenter
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity(), ISplashActivityView {

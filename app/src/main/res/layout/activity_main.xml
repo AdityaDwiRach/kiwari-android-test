@@ -10,10 +10,11 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tlbar_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="@color/red"/>
 
-    <FrameLayout
-        android:id="@+id/fl_main"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

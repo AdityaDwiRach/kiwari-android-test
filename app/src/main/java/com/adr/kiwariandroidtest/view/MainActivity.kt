@@ -5,23 +5,37 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.adr.kiwariandroidtest.R
-import com.adr.kiwariandroidtest.presenter.IMainActivityPresenter
+import com.adr.kiwariandroidtest.adapter.RVAdapterMain
+import com.adr.kiwariandroidtest.model.UsersModel
 import com.adr.kiwariandroidtest.presenter.MainActivityPresenter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), IMainActivityView {
-    private val presenter by lazy { MainActivityPresenter(this, this) }
+
+    companion object {
+        const val EXTRA_UID = "extra_uid"
+    }
+
+    private val presenter by lazy { MainActivityPresenter(this) }
+    private val adapterRV by lazy { RVAdapterMain(this) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(tlbar_main)
-        supportActionBar?.title = "testiiiiiing"
+        supportActionBar?.title = "Contact"
 
-        presenter.getCurrentUid()
+        rv_main.setHasFixedSize(true)
+        rv_main.layoutManager = LinearLayoutManager(this)
+        rv_main.adapter = adapterRV
 
+        presenter.getAllContact()
 
     }
 
@@ -43,10 +57,21 @@ class MainActivity : AppCompatActivity(), IMainActivityView {
 
     override fun onLogoutStatus(status: Boolean) {
         if (status){
+            startActivity(Intent(this, SplashActivity::class.java))
             finish()
         } else {
             Toast.makeText(this, "Logout failed. Please tak a moment then try again.", Toast.LENGTH_SHORT).show()
         }
     }
 
+    override fun onSetData(data: ArrayList<UsersModel.User>) {
+        adapterRV.setListData(data)
+        adapterRV.refreshData()
+    }
+
+    override fun onContactClicked(userId: String) {
+        val intent = Intent(this, ChatActivity::class.java)
+        intent.putExtra(EXTRA_UID, userId)
+        startActivity(intent)
+    }
 }

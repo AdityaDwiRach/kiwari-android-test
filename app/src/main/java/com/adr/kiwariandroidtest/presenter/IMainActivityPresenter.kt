@@ -1,6 +1,6 @@
 package com.adr.kiwariandroidtest.presenter
 
 interface IMainActivityPresenter {
-    fun getCurrentUid()
+    fun getAllContact()
     fun userLogout()
 }
